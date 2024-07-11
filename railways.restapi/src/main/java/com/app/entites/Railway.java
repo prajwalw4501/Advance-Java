@@ -1,4 +1,5 @@
 package com.app.entites;
+
 import java.time.LocalDateTime;
 import javax.persistence.*;
 import javax.persistence.Column;
@@ -26,10 +27,10 @@ public class Railway {
 	@Enumerated(EnumType.STRING)
 	private Category category;
 	@Column(nullable = false)
-	//@PastOrPresent
+	// @PastOrPresent
 	private LocalDateTime start_time;
 	@Column(nullable = false)
-	//@FutureOrPresent
+	// @FutureOrPresent
 	private LocalDateTime end_time;
 	@Column(nullable = false, length = 10)
 	private String source;
@@ -43,6 +44,10 @@ public class Railway {
 	private double frequency;
 
 	public Railway() {
+	}
+
+	public Railway(String source) {
+		this.source = source;
 	}
 
 	public Railway(String name, Category category, LocalDateTime start_time, LocalDateTime end_time, String source,

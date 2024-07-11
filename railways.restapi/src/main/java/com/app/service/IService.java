@@ -12,5 +12,12 @@ public interface IService {
 	void deleteRail(int id);
 
 	List<Railway> getByCat(Category cat);
-	Railway updateRailSrc(String src,int id);
+
+	String updateRailSrc(String src, int id);
+
+	List<Railway> gellAll();
+	List<Railway> sortByD();
+	
+	String updateRail(Railway rail);
+
 }

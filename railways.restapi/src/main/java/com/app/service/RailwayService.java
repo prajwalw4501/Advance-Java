@@ -1,5 +1,6 @@
 package com.app.service;
 
+import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,13 +20,13 @@ public class RailwayService implements IService {
 
 	@Override
 	public Railway addNewRailway(Railway rail) {
-		return railrepo.save(rail);
+			return railrepo.save(rail);
 
 	}
 
 	@Override
 	public void deleteRail(int id) {
-		// TODO Auto-generated method stub
+
 		railrepo.deleteById(id);
 		System.out.println("Railway deleted by ID No.: " + id);
 	}
@@ -37,13 +38,31 @@ public class RailwayService implements IService {
 	}
 
 	@Override
-	public Railway updateRailSrc(String src, int id) {
+	public String updateRailSrc(String src, int id) {
 
-		Optional<Railway> r = railrepo.findById(id);
-		Railway rail = new Railway();
-		rail.setSource(src);
+		railrepo.findById(id).orElseThrow(() -> new InvalidParameterException("Invalid Id"));
+		railrepo.updateRailSrc(src, id);
+		return "Updated!!";
+
 		// TODO Auto-generated method stub
-		return rail;
+	}
+
+	@Override
+	public List<Railway> gellAll() {
+		return railrepo.findAll();
+
+	}
+
+	@Override
+	public List<Railway> sortByD() {
+		List<Railway> sorts = railrepo.sortByDest();
+		return sorts;
+	}
+
+	@Override
+	public String updateRail(Railway rail) {
+		railrepo.save(rail);
+		return "Updated Successfully!!";
 	}
 
 }
